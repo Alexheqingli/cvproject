@@ -8,47 +8,31 @@
 
 #include "Recognition.h"
 
-// Create a string that contains the exact cascade name
-const char* cascade_name =
-"/opt/local/share/OpenCV/haarcascades/haarcascade_frontalface_alt.xml";
-/*    "haarcascade_profileface.xml";*/
 
-
-// Function to test whether a face is detected
-CvSeq* face_detect( IplImage* img )
-{   CvSeq* faces = 0;
+void find_faces( IplImage* img, CvMemStorage* &storage, CvHaarClassifierCascade* &cascade, CvSeq* &faces, float scale){
+    // this function finds the faces and returns a sequence
     
-    // Create memory for calculations
-    static CvMemStorage* storage = 0;
+    cvClearMemStorage( storage ); // Clear the memory storage which was used before
     
-    // Create a new Haar classifier
-    static CvHaarClassifierCascade* cascade = 0;
+    IplImage* tmp = cvCreateImage(cvSize(cvGetSize(img).width*scale, cvGetSize(img).height*scale), img->depth, img->nChannels);
     
-    // Load the HaarClassifierCascade
-    cascade = (CvHaarClassifierCascade*)cvLoad( cascade_name, 0, 0, 0 );
+    cvResize(img, tmp);
     
-    // Check whether the cascade has loaded successfully. Else report and error and quit
-    if( !cascade )
-    {
+    if( !cascade ){
         fprintf( stderr, "ERROR: Could not load classifier cascade\n" );
-    }
+        return;
+    }// Check whether the cascade has loaded successfully. Else report and error and quit
     
-    // Allocate the memory storage
-    storage = cvCreateMemStorage(0);
-    
-    // Clear the memory storage which was used before
-    cvClearMemStorage( storage );
-    
-    // Find whether the cascade is loaded, to find the faces. If yes, then:
     if( cascade )
     {
-        // There can be more than one face in an image. So create a growable sequence of faces.
-        // Detect the objects and store them in the sequence
-        faces = cvHaarDetectObjects( img, cascade, storage,
-                                           1.1, 2, CV_HAAR_DO_CANNY_PRUNING,
-                                           cvSize(40, 40) );
+        float faceFraction = 1.0/16; // face can be a minimum size of 1/16 the size of the image
+        int w = (int)(cvGetSize(tmp).width*faceFraction);
+        int h = (int)(cvGetSize(tmp).height*faceFraction);
+        faces = cvHaarDetectObjects( tmp, cascade, storage, 1.2, 2, CV_HAAR_DO_CANNY_PRUNING,cvSize(w, h)); // create sequence of images for however many faces are detected
     }
     
-    return faces;
+    // resize all of the rects
+    
+    cvReleaseImage(&tmp);
     
 }

@@ -15,4 +15,5 @@
 #endif /* defined(__cvtest__draw__) */
 
 // Function prototype for detecting and drawing an object from an image
-IplImage* detect_and_draw( IplImage* img, CvSeq* faces, int scale);
+//IplImage* detect_and_draw( IplImage* img, CvSeq* faces, int scale);
+void draw_face_rect(CvRect* r, IplImage* &img);

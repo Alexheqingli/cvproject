@@ -10,5 +10,9 @@
 #define __cvtest__FaceRecord__
 
 #include <iostream>
+#include <opencv2/opencv.hpp>
 
 #endif /* defined(__cvtest__FaceRecord__) */
+
+
+void crop_and_scale_face(IplImage *imgCamera, IplImage* &imgFace, CvRect *r);

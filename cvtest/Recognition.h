@@ -15,4 +15,7 @@
 #endif /* defined(__cvtest__Recognition__) */
 
 // Function to detect faces in an image
-CvSeq* face_detect( IplImage* img );
+//CvSeq* face_detect( IplImage* img );
+
+
+void find_faces( IplImage* img, CvMemStorage* &storage, CvHaarClassifierCascade* &cascade, CvSeq* &faces, float scale);
