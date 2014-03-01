@@ -13,7 +13,6 @@ void find_faces( IplImage* img, CvMemStorage* &storage, CvHaarClassifierCascade*
     // this function finds the faces and returns a sequence
     
     cvClearMemStorage( storage ); // Clear the memory storage which was used before
-    
     IplImage* tmp = cvCreateImage(cvSize(cvGetSize(img).width*scale, cvGetSize(img).height*scale), img->depth, img->nChannels);
     
     cvResize(img, tmp);

@@ -28,7 +28,6 @@
 #include <draw.h>
 #include <FaceRecord.h>
 #include <FaceCapture.h>
-#include <morph.h>
 
 
 // Create a string that contains the exact cascade name
@@ -45,7 +44,7 @@ int main( int argc, char** argv )
     // Create a new named window with title: result
     cvNamedWindow( "result", 1 );
     
-    CvCapture* capture =capture = cvCaptureFromCAM(-1); // capture from video device (Macbook iSight)
+    CvCapture* capture = capture = cvCaptureFromCAM(-1); // capture from video device (Macbook iSight)
     cvSetCaptureProperty( capture, CV_CAP_PROP_FRAME_WIDTH, 1000 );// set window size to 640
     cvSetCaptureProperty( capture, CV_CAP_PROP_FRAME_HEIGHT, 600 ); // set window size to 480
     
@@ -53,8 +52,20 @@ int main( int argc, char** argv )
     IplImage *imgCamera;
     IplImage *imgDrawn;
     IplImage *imgFace;
+    CvRect *r;
+    CvSeq *faces;
+    float scale = 1.0/10; // how far do we want to scale down the haar detect objects images for speed
     
     cvNamedWindow("Window"); // create a window to display in
+    
+    // Create a new Haar classifier
+    static CvHaarClassifierCascade* cascade = 0;
+    cascade = (CvHaarClassifierCascade*)cvLoad( cascade_name, 0, 0, 0 );
+    
+    char *name = new char[100];
+    
+    static CvMemStorage* storage = 0;// Create memory for calculations
+    storage = cvCreateMemStorage(0);// Allocate the memory storage
 
     while(1) {
         
@@ -62,43 +73,21 @@ int main( int argc, char** argv )
         //Step 1: stream video. Video to images
         //*************************************************************************************/
         
-        CvCapture* capture = cvCaptureFromCAM(-1); // capture from video device (Macbook iSight)
-        
         // capture frame from video and then turn it into one single image-imgCamera
         capture_frame(capture, imgCamera);
         
         // allocate an image to be used later
         imgDrawn = cvCreateImage(cvGetSize(imgCamera), imgCamera->depth, imgCamera->nChannels);
         imgFace = cvCreateImage(cvSize(600, 600), imgCamera->depth, imgCamera->nChannels);
-        
-        // Create memory for calculations
-        static CvMemStorage* storage = 0;
-        
-        // Allocate the memory storage
-        storage = cvCreateMemStorage(0);
+        cvCopy(imgCamera, imgDrawn);
         
         // Clear the memory storage which was used before
-        cvClearMemStorage( storage );
-        
-        // Create a new Haar classifier
-        static CvHaarClassifierCascade* cascade = 0;
-        
-        // Load the HaarClassifierCascade
-        cascade = (CvHaarClassifierCascade*)cvLoad( cascade_name, 0, 0, 0 );
-        char *name = new char[100];
-        
-        CvRect *r;
-        CvSeq *faces;
-        vector<int> number;
-        float scale = 1.0/10; // how far do we want to scale down the haar detect objects images for speed
+        //cvClearMemStorage( storage );
         
         //************************Implementation**************************
         // j is the iterator to keep track of the no of picture per person taken
         int j = 0;
         int i;
-        capture_frame(capture, imgCamera);
-        
-        cvCopy(imgCamera, imgDrawn);
         
         find_faces(imgCamera, storage, cascade, faces, scale);
         
@@ -117,14 +106,9 @@ int main( int argc, char** argv )
             //j++;
             //sprintf(name,"/Users/alexli/Documents/Academics 2014 Winter/CV Proj/img%d.jpg",j);
             //cvSaveImage(name, imgFace);
-            cvShowImage("Window", imgDrawn);
-            
-            char c = cvWaitKey(33); // press escape to quit
-            if( c == 27 ) break;
-            
+           
         }
-        
-        
+         cvShowImage("Window", imgDrawn);
         // press escape to quit
         if( cvWaitKey(33) == 27 ) break;
     }

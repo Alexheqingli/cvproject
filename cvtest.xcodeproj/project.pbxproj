@@ -29,7 +29,6 @@
 		5AC8DC3A1897A7FA00C31374 /* libopencv_video.2.4.8.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AC8DC2A1897A7FA00C31374 /* libopencv_video.2.4.8.dylib */; };
 		5AC8DC3B1897A7FA00C31374 /* libopencv_videostab.2.4.8.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AC8DC2B1897A7FA00C31374 /* libopencv_videostab.2.4.8.dylib */; };
 		5AD0860D18C2581B00573EDC /* FaceCapture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5AD0860B18C2581B00573EDC /* FaceCapture.cpp */; };
-		5AD0861018C261A200573EDC /* morph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5AD0860E18C261A200573EDC /* morph.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -74,8 +73,6 @@
 		5AC8DC2B1897A7FA00C31374 /* libopencv_videostab.2.4.8.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_videostab.2.4.8.dylib; path = ../../../../../opt/local/lib/libopencv_videostab.2.4.8.dylib; sourceTree = "<group>"; };
 		5AD0860B18C2581B00573EDC /* FaceCapture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FaceCapture.cpp; sourceTree = "<group>"; };
 		5AD0860C18C2581B00573EDC /* FaceCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceCapture.h; sourceTree = "<group>"; };
-		5AD0860E18C261A200573EDC /* morph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = morph.cpp; sourceTree = "<group>"; };
-		5AD0860F18C261A200573EDC /* morph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = morph.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,8 +139,6 @@
 			isa = PBXGroup;
 			children = (
 				5AC8DC111897A65500C31374 /* main.cpp */,
-				5AD0860E18C261A200573EDC /* morph.cpp */,
-				5AD0860F18C261A200573EDC /* morph.h */,
 				5AD0860B18C2581B00573EDC /* FaceCapture.cpp */,
 				5AD0860C18C2581B00573EDC /* FaceCapture.h */,
 				5A4A05B918B05C37004B7D8A /* FaceRecord.cpp */,
@@ -210,7 +205,6 @@
 			files = (
 				5AC8DC121897A65500C31374 /* main.cpp in Sources */,
 				5A4A05B518B02A92004B7D8A /* Recognition.cpp in Sources */,
-				5AD0861018C261A200573EDC /* morph.cpp in Sources */,
 				5AD0860D18C2581B00573EDC /* FaceCapture.cpp in Sources */,
 				5A4A05BB18B05C37004B7D8A /* FaceRecord.cpp in Sources */,
 				5A4A05AC18B01539004B7D8A /* draw.cpp in Sources */,
