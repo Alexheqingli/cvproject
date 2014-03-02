@@ -7,6 +7,8 @@
 //
 
 #include "Recognition.h"
+const char* folder_name =
+"/Users/alexli/Documents/Academics 2014 Winter/CV Proj/Images";
 
 
 void find_faces( IplImage* img, CvMemStorage* &storage, CvHaarClassifierCascade* &cascade, CvSeq* &faces, float scale){
@@ -48,7 +50,15 @@ bool same_face(CvRect* r, CvRect* r_last, IplImage* imgCamera, IplImage* imgCame
     return diff<(r->width)/2;
 }
 
-void report_faces(int start, int n) {
+void report_faces(int start, int n, Ptr<FaceRecognizer> model) {
+    std::stringstream filename;
+    int result;
+    for (int i = start+1; i<=start+n; i++) {
+        filename<< folder_name << "/img" << i << ".jpg";
+        result = detect(model, filename.str());
+    }
+    
     // query database on the eigenface of the images
     // save the face visit in the database
 }
+

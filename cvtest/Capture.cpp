@@ -78,3 +78,5 @@ void save_faces(CvSeq* faces_new, IplImage* imgCamera,IplImage* &imgFace, float 
         cvSaveImage(name, imgFace);
     }
 }
+
+

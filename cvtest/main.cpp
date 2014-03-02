@@ -26,6 +26,7 @@
 
 #include <Recognition.h>
 #include <Capture.h>
+#include <genderDetection.h>
 
 using namespace std;
 
@@ -36,6 +37,8 @@ const char* cascade_name =
 // Main function, defines the entry point for the program.
 int main( int argc, char** argv )
 {
+    Ptr<FaceRecognizer>  model = gender_detection("/Users/xueqianjiang/Desktop/cvproject/male.txt"); // CHANGE THIS
+    
     // memeory allocation
     static CvMemStorage* storage = 0;
     storage = cvCreateMemStorage(0);
@@ -112,7 +115,7 @@ int main( int argc, char** argv )
                 // get the rect from the sequence
                 r = (CvRect*)cvGetSeqElem(faces, i);
                 if (faces_last->total == 0) {
-                    cout << "New PERSON!!";
+                    //cout << "New PERSON!!";
                     cvSeqPush(faces_new, (CvRect*)&r);
                 }
                 else {
@@ -120,7 +123,7 @@ int main( int argc, char** argv )
                         CvRect *r_last = (CvRect*)cvGetSeqElem(faces_last, k);
                         if (!same_face(r, r_last, imgCamera, imgCamera_last, i, k)) {
                             cvSeqPush(faces_new, &r);
-                            cout << "faces_new"<< faces_new->total<< "\n";
+                            //cout << "faces_new"<< faces_new->total<< "\n";
                         }
                     }
                 }
@@ -133,13 +136,13 @@ int main( int argc, char** argv )
             if ((faces_new->total)>0) {
                 // To change to save only faces_new
                 save_faces(faces, imgCamera, imgFace, scale, filecounter);
-                report_faces(filecounter, faces->total); // report new faces stored starting from filecounter
+                report_faces(filecounter, faces->total, model); // report new faces stored starting from filecounter
                 // update
                 filecounter = filecounter+(faces -> total);}
             
             cvClearSeq(faces_last);
             cvSeqPush(faces_last, faces);
-            cout << "face_last:" << faces_last->total << "\n";
+            //cout << "face_last:" << faces_last->total << "\n";
             cvClearSeq(faces_new);
 
         }

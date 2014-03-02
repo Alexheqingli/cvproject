@@ -71,6 +71,7 @@
 		5AD0861418C2DFEA00573EDC /* gender */ = {isa = PBXFileReference; lastKnownFileType = folder; path = gender; sourceTree = "<group>"; };
 		5AD0861518C2DFEA00573EDC /* genderDetection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = genderDetection.cpp; sourceTree = "<group>"; };
 		5AD0861618C2DFEA00573EDC /* genderDetection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = genderDetection.h; sourceTree = "<group>"; };
+		5AD0861818C2E08F00573EDC /* male.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = male.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +137,7 @@
 		5AC8DC101897A65500C31374 /* cvtest */ = {
 			isa = PBXGroup;
 			children = (
+				5AD0861818C2E08F00573EDC /* male.txt */,
 				5AD0861418C2DFEA00573EDC /* gender */,
 				5AD0861518C2DFEA00573EDC /* genderDetection.cpp */,
 				5AD0861618C2DFEA00573EDC /* genderDetection.h */,

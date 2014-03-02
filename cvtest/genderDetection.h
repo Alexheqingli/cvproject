@@ -31,7 +31,9 @@ using namespace cv;
 
 // this part is for pca method before the actual boost
 
-void gender_detection(const string& filename, vector<Mat>& images, vector<int>& labels, char separator = ';');
+int detect(Ptr<FaceRecognizer> model, string filename);
+
+Ptr<FaceRecognizer> gender_detection(const string& filename);
 
 static Mat norm_0_255(InputArray _src);
 

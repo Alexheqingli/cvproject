@@ -46,7 +46,7 @@ static Mat norm_0_255(InputArray _src) {
     return dst;
 }
 
-void gender_detection(string fn_csv)
+Ptr<FaceRecognizer> gender_detection(string fn_csv)
 {
     string output_folder;
 
@@ -166,6 +166,15 @@ void gender_detection(string fn_csv)
     // if(argc == 2) {
     waitKey(0);
     // }
+    
+    return model;
 }
 
+
+int detect(Ptr<FaceRecognizer> model, string filename) {
+    Mat A = imread(filename, 0);
+    int prediction = model->predict(A);
+    string result_message = format("Predicted class = %d.", prediction);
+    return prediction;
+}
 
