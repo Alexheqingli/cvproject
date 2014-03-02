@@ -21,6 +21,6 @@
 //CvSeq* face_detect( IplImage* img );
 
 
-void find_faces( IplImage* img, CvMemStorage* &storage, CvHaarClassifierCascade* &cascade, CvSeq* &faces, float scale);
+void find_faces( IplImage* img, CvMemStorage* storage, CvHaarClassifierCascade* cascade, CvSeq* faces, float scale);
 void report_faces(int start, int n, Ptr<FaceRecognizer> model);
 bool same_face(CvRect* r, CvRect* r_last, IplImage* imgCamera, IplImage* imgCamera_last, int num, int num_last);

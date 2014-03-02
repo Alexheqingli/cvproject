@@ -37,11 +37,13 @@ const char* cascade_name =
 // Main function, defines the entry point for the program.
 int main( int argc, char** argv )
 {
-    Ptr<FaceRecognizer>  model = gender_detection("/Users/xueqianjiang/Desktop/cvproject/male.txt"); // CHANGE THIS
+    //Ptr<FaceRecognizer>  model = gender_detection("/Users/xueqianjiang/Desktop/cvproject/male.txt"); // CHANGE THIS
     
     // memeory allocation
     static CvMemStorage* storage = 0;
     storage = cvCreateMemStorage(0);
+    static CvMemStorage* storage2 = 0;
+    storage2 = cvCreateMemStorage(0);
     
     // Create a new named window with title: result
     cvNamedWindow("Window"); // create a window to display in
@@ -55,9 +57,8 @@ int main( int argc, char** argv )
     IplImage *imgDrawn; // image with drawing (rect containing faces)
     IplImage *imgFace; // face picture extracted from the camera
     CvRect *r; // rects containing faces
-    CvSeq *faces; // sequnece of faces in the camera image - CURRENT
-    CvSeq *faces_last = cvCreateSeq(0, sizeof(CvSeq), sizeof(CvRect), storage); // sequnece of faces in the camera image - LAST FRAME
-    CvSeq *faces_new = cvCreateSeq(0, sizeof(CvSeq), sizeof(CvRect), storage); // sequnece of faces in the camera image - NEW FACES
+    CvSeq *faces = cvCreateSeq(0, sizeof(CvSeq), sizeof(CvRect), storage); ; // sequnece of faces in the camera image - CURRENT
+    CvSeq *faces_last = cvCreateSeq(0, sizeof(CvSeq), sizeof(CvRect), storage2); // sequnece of faces in the camera image - LAST FRAME
     float scale = 1.0/5; // how far do we want to scale down the haar detect objects images for speed
     
     // Create a new Haar classifier
@@ -83,6 +84,14 @@ int main( int argc, char** argv )
         cvCopy(imgCamera, imgDrawn);
         
         if (counter == 10) { // take action for every 10 frames
+
+            counter = 1;
+            //*************************************************************************************/
+            //Step 2: Detection
+            //*************************************************************************************/
+            find_faces(imgCamera, storage, cascade, faces, scale);
+            //printf("Last faces seq had %d faces detected. \n",faces_last->total);
+            
             //*************************************************************************************/
             //Step 4: Draw every face in the picture
             //*************************************************************************************/
@@ -99,52 +108,42 @@ int main( int argc, char** argv )
             cvShowImage("Window", imgDrawn);
             // press escape to quit
             if( cvWaitKey(33) == 27 ) break;
-            counter = 1;
-            //*************************************************************************************/
-            //Step 2: Detection
-            //*************************************************************************************/
-            find_faces(imgCamera, storage, cascade, faces, scale);
-            //printf("Last faces seq had %d faces detected. \n",faces_last->total);
-            
             //*************************************************************************************/
             //Step 3: Recognize the new faces
             //*************************************************************************************/
             //TO DO: Combined the following into a funciton: match_faces(faces_new, faces, faces_last, lastspotted, currentspotted, imgCamera);
             for(int i = 0; i < (faces ? faces->total : 0); i++ ){
-                cout << "faces_new"<< faces_new->total<< "\n";
                 // get the rect from the sequence
                 r = (CvRect*)cvGetSeqElem(faces, i);
                 if (faces_last->total == 0) {
-                    //cout << "New PERSON!!";
-                    cvSeqPush(faces_new, (CvRect*)&r);
+                    cout<<"a face appeared: "<<"there are total faces of "<<faces_last->total<<"\n";
+                    save_face(r, imgCamera, imgFace, scale, filecounter);
+                    filecounter++;
+                    //report_faces(filecounter, faces_new->total, model); // report new faces stored starting from filecounter
                 }
                 else {
                     for(int k = 0; k < (faces_last ? faces_last->total : 0); k++ ){
                         CvRect *r_last = (CvRect*)cvGetSeqElem(faces_last, k);
                         if (!same_face(r, r_last, imgCamera, imgCamera_last, i, k)) {
-                            cvSeqPush(faces_new, &r);
-                            //cout << "faces_new"<< faces_new->total<< "\n";
+                            save_face(r, imgCamera, imgFace, scale, filecounter);
+                            filecounter++;
+                            //report_faces(filecounter, faces_new->total, model); // report new faces stored starting from filecounter
                         }
                     }
                 }
             }
             
-            //*************************************************************************************/
-            //Step 3: Process faces - save new faces, report new faces
-            //*************************************************************************************/
+            //cvClearMemStorage(storage2);
+            while (faces_last->total >0) {
+                cvSeqPop(faces_last);}
             
-            if ((faces_new->total)>0) {
-                // To change to save only faces_new
-                save_faces(faces, imgCamera, imgFace, scale, filecounter);
-                report_faces(filecounter, faces->total, model); // report new faces stored starting from filecounter
-                // update
-                filecounter = filecounter+(faces -> total);}
-            
-            cvClearSeq(faces_last);
-            cvSeqPush(faces_last, faces);
-            //cout << "face_last:" << faces_last->total << "\n";
-            cvClearSeq(faces_new);
-
+            for(int i = 0; i < (faces ? faces->total : 0); i++ ){
+                // get the rect from the sequence
+                r = (CvRect*)cvGetSeqElem(faces, i);
+                cvSeqPush(faces_last, r);
+            }
+            //cout << "face_last:" << faces_last->total << "\n";}
+            cvClearMemStorage(storage);
         }
         counter++;
         imgCamera_last = imgCamera;

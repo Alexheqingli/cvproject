@@ -7,11 +7,9 @@
 //
 
 #include "Recognition.h"
-const char* folder_name =
-"/Users/alexli/Documents/Academics 2014 Winter/CV Proj/Images";
 
 
-void find_faces( IplImage* img, CvMemStorage* &storage, CvHaarClassifierCascade* &cascade, CvSeq* &faces, float scale){
+void find_faces( IplImage* img, CvMemStorage* storage, CvHaarClassifierCascade* cascade, CvSeq* faces, float scale){
     // this function finds the faces and returns a sequence
     
     cvClearMemStorage( storage ); // Clear the memory storage which was used before
@@ -42,15 +40,21 @@ bool same_face(CvRect* r, CvRect* r_last, IplImage* imgCamera, IplImage* imgCame
     float distance = (std::max(i,k)+1.0)/(std::min(i,k)+1.0);
     // Find the dimensions of the face,and scale it if necessary
     int curr_left = r->x;
+    //cout<<"curr_left"<<curr_left<<"\n";
     int curr_right = (r->x+r->width);
+    //cout<<"curr_right"<<curr_right<<"\n";
     int last_left = r_last->x;
+    //cout<<"last_left"<<last_left<<"\n";
     int last_right = (r_last->x+r_last->width);
+    //cout<<"curr_right"<<last_right<<"\n";
     int diff = ((curr_left - last_left) + (curr_right - last_right))/2 * distance;
     //int img_wid = imgCamera->width;
-    return diff<(r->width)/2;
+    //cout<<"diff is: "<<diff<<"vs. width of "<<r->width<<"/n";
+    return diff<(r->width)/4;
 }
 
 void report_faces(int start, int n, Ptr<FaceRecognizer> model) {
+    const char* folder_name ="/Users/alexli/Documents/Academics 2014 Winter/CV Proj/Images";
     std::stringstream filename;
     int result;
     for (int i = start+1; i<=start+n; i++) {

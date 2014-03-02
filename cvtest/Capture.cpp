@@ -9,8 +9,7 @@
 #include "Capture.h"
 
 /*    "haarcascade_profileface.xml";*/
-const char* folder_name =
-"/Users/alexli/Documents/Academics 2014 Winter/CV Proj/Images";
+
 
 void capture_frame(CvCapture *capture, IplImage* &img){
     // img is the destination
@@ -63,20 +62,15 @@ void capture_face(IplImage *imgCamera, IplImage* &imgFace, CvRect *r, float scal
     cvReleaseImage(&tmp);
 }
 
-void save_faces(CvSeq* faces_new, IplImage* imgCamera,IplImage* &imgFace, float scale, int j) {
-    for(int i = 0; i < (faces_new ? faces_new->total : 0); i++ ){
-        // get the rect from the sequence
-        CvRect* r = (CvRect*)cvGetSeqElem(faces_new, i);
-        
+void save_face(CvRect* f, IplImage* imgCamera,IplImage* imgFace, float scale, int j) {
+    const char* folder_name ="/Users/alexli/Documents/Academics 2014 Winter/CV Proj/Images";
         // capture the face image into imgFace for processing
-        capture_face(imgCamera, imgFace, r, scale);
-        
+        capture_face(imgCamera, imgFace, f, scale);
         j++;
         std::stringstream filename;
         filename<< folder_name << "/img" << j << ".jpg";
         char *name = (char *)filename.str().c_str();
         cvSaveImage(name, imgFace);
-    }
 }
 
 

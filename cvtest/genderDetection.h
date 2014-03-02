@@ -34,7 +34,3 @@ using namespace cv;
 int detect(Ptr<FaceRecognizer> model, string filename);
 
 Ptr<FaceRecognizer> gender_detection(const string& filename);
-
-static Mat norm_0_255(InputArray _src);
-
-static void read_csv(const string& filename, vector<Mat>& images, vector<int>& labels, char separator = ';') ;
