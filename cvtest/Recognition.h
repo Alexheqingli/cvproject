@@ -10,7 +10,9 @@
 #define __cvtest__Recognition__
 
 #include <iostream>
+#include <vector>
 #include <opencv2/opencv.hpp>
+
 
 #endif /* defined(__cvtest__Recognition__) */
 
@@ -19,3 +21,5 @@
 
 
 void find_faces( IplImage* img, CvMemStorage* &storage, CvHaarClassifierCascade* &cascade, CvSeq* &faces, float scale);
+void report_faces(int start, int n);
+bool same_face(CvRect* r, CvRect* r_last, IplImage* imgCamera, IplImage* imgCamera_last, int num, int num_last);

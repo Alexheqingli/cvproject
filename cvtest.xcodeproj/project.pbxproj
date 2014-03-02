@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5A4A05AC18B01539004B7D8A /* draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5A4A05AA18B01539004B7D8A /* draw.cpp */; };
 		5A4A05B518B02A92004B7D8A /* Recognition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5A4A05B318B02A92004B7D8A /* Recognition.cpp */; };
-		5A4A05BB18B05C37004B7D8A /* FaceRecord.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5A4A05B918B05C37004B7D8A /* FaceRecord.cpp */; };
 		5AC8DC121897A65500C31374 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5AC8DC111897A65500C31374 /* main.cpp */; };
 		5AC8DC141897A65500C31374 /* cvtest.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5AC8DC131897A65500C31374 /* cvtest.1 */; };
 		5AC8DC1B1897A71600C31374 /* libopencv_core.2.4.8.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AC8DC1A1897A71600C31374 /* libopencv_core.2.4.8.dylib */; };
@@ -28,7 +26,8 @@
 		5AC8DC391897A7FA00C31374 /* libopencv_superres.2.4.8.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AC8DC291897A7FA00C31374 /* libopencv_superres.2.4.8.dylib */; };
 		5AC8DC3A1897A7FA00C31374 /* libopencv_video.2.4.8.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AC8DC2A1897A7FA00C31374 /* libopencv_video.2.4.8.dylib */; };
 		5AC8DC3B1897A7FA00C31374 /* libopencv_videostab.2.4.8.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AC8DC2B1897A7FA00C31374 /* libopencv_videostab.2.4.8.dylib */; };
-		5AD0860D18C2581B00573EDC /* FaceCapture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5AD0860B18C2581B00573EDC /* FaceCapture.cpp */; };
+		5AD0860D18C2581B00573EDC /* Capture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5AD0860B18C2581B00573EDC /* Capture.cpp */; };
+		5AD0861718C2DFEA00573EDC /* genderDetection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5AD0861518C2DFEA00573EDC /* genderDetection.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -45,12 +44,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		5A4A05AA18B01539004B7D8A /* draw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = draw.cpp; sourceTree = "<group>"; };
-		5A4A05AB18B01539004B7D8A /* draw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = draw.h; sourceTree = "<group>"; };
 		5A4A05B318B02A92004B7D8A /* Recognition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Recognition.cpp; sourceTree = "<group>"; };
 		5A4A05B418B02A92004B7D8A /* Recognition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Recognition.h; sourceTree = "<group>"; };
-		5A4A05B918B05C37004B7D8A /* FaceRecord.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FaceRecord.cpp; sourceTree = "<group>"; };
-		5A4A05BA18B05C37004B7D8A /* FaceRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceRecord.h; sourceTree = "<group>"; };
 		5AC8DC0E1897A65500C31374 /* cvtest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cvtest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AC8DC111897A65500C31374 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		5AC8DC131897A65500C31374 /* cvtest.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = cvtest.1; sourceTree = "<group>"; };
@@ -71,8 +66,11 @@
 		5AC8DC291897A7FA00C31374 /* libopencv_superres.2.4.8.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_superres.2.4.8.dylib; path = ../../../../../opt/local/lib/libopencv_superres.2.4.8.dylib; sourceTree = "<group>"; };
 		5AC8DC2A1897A7FA00C31374 /* libopencv_video.2.4.8.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_video.2.4.8.dylib; path = ../../../../../opt/local/lib/libopencv_video.2.4.8.dylib; sourceTree = "<group>"; };
 		5AC8DC2B1897A7FA00C31374 /* libopencv_videostab.2.4.8.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_videostab.2.4.8.dylib; path = ../../../../../opt/local/lib/libopencv_videostab.2.4.8.dylib; sourceTree = "<group>"; };
-		5AD0860B18C2581B00573EDC /* FaceCapture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FaceCapture.cpp; sourceTree = "<group>"; };
-		5AD0860C18C2581B00573EDC /* FaceCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceCapture.h; sourceTree = "<group>"; };
+		5AD0860B18C2581B00573EDC /* Capture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Capture.cpp; sourceTree = "<group>"; };
+		5AD0860C18C2581B00573EDC /* Capture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Capture.h; sourceTree = "<group>"; };
+		5AD0861418C2DFEA00573EDC /* gender */ = {isa = PBXFileReference; lastKnownFileType = folder; path = gender; sourceTree = "<group>"; };
+		5AD0861518C2DFEA00573EDC /* genderDetection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = genderDetection.cpp; sourceTree = "<group>"; };
+		5AD0861618C2DFEA00573EDC /* genderDetection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = genderDetection.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,13 +136,12 @@
 		5AC8DC101897A65500C31374 /* cvtest */ = {
 			isa = PBXGroup;
 			children = (
+				5AD0861418C2DFEA00573EDC /* gender */,
+				5AD0861518C2DFEA00573EDC /* genderDetection.cpp */,
+				5AD0861618C2DFEA00573EDC /* genderDetection.h */,
 				5AC8DC111897A65500C31374 /* main.cpp */,
-				5AD0860B18C2581B00573EDC /* FaceCapture.cpp */,
-				5AD0860C18C2581B00573EDC /* FaceCapture.h */,
-				5A4A05B918B05C37004B7D8A /* FaceRecord.cpp */,
-				5A4A05BA18B05C37004B7D8A /* FaceRecord.h */,
-				5A4A05AA18B01539004B7D8A /* draw.cpp */,
-				5A4A05AB18B01539004B7D8A /* draw.h */,
+				5AD0860B18C2581B00573EDC /* Capture.cpp */,
+				5AD0860C18C2581B00573EDC /* Capture.h */,
 				5A4A05B318B02A92004B7D8A /* Recognition.cpp */,
 				5A4A05B418B02A92004B7D8A /* Recognition.h */,
 				5AC8DC131897A65500C31374 /* cvtest.1 */,
@@ -203,11 +200,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5AD0861718C2DFEA00573EDC /* genderDetection.cpp in Sources */,
 				5AC8DC121897A65500C31374 /* main.cpp in Sources */,
 				5A4A05B518B02A92004B7D8A /* Recognition.cpp in Sources */,
-				5AD0860D18C2581B00573EDC /* FaceCapture.cpp in Sources */,
-				5A4A05BB18B05C37004B7D8A /* FaceRecord.cpp in Sources */,
-				5A4A05AC18B01539004B7D8A /* draw.cpp in Sources */,
+				5AD0860D18C2581B00573EDC /* Capture.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

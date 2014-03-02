@@ -35,3 +35,20 @@ void find_faces( IplImage* img, CvMemStorage* &storage, CvHaarClassifierCascade*
     cvReleaseImage(&tmp);
     
 }
+
+bool same_face(CvRect* r, CvRect* r_last, IplImage* imgCamera, IplImage* imgCamera_last, int i, int k) {
+    float distance = (std::max(i,k)+1.0)/(std::min(i,k)+1.0);
+    // Find the dimensions of the face,and scale it if necessary
+    int curr_left = r->x;
+    int curr_right = (r->x+r->width);
+    int last_left = r_last->x;
+    int last_right = (r_last->x+r_last->width);
+    int diff = ((curr_left - last_left) + (curr_right - last_right))/2 * distance;
+    //int img_wid = imgCamera->width;
+    return diff<(r->width)/2;
+}
+
+void report_faces(int start, int n) {
+    // query database on the eigenface of the images
+    // save the face visit in the database
+}
