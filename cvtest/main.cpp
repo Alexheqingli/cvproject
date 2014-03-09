@@ -117,9 +117,14 @@ int main( int argc, char** argv )
                 r = (CvRect*)cvGetSeqElem(faces, i);
                 if (faces_last->total == 0) {
                     cout<<"a face appeared: "<<"there are total faces of "<<faces->total<<"\n";
-                    send_record(1, 0);
                     save_face(r, imgCamera, imgFace, scale, filecounter);
                     filecounter++;
+                    float eig[3];
+                    eig[0] = 0.5;
+                    eig[1] = 1.5;
+                    eig[2] = 2.6;
+                    send_record(2.0, eig, 3);
+
                     //report_faces(filecounter, faces_new->total, model); // report new faces stored starting from filecounter
                 }
                 else {

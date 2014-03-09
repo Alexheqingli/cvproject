@@ -58,25 +58,36 @@ void report_faces(int start, int n, Ptr<FaceRecognizer> model) {
     const char* folder_name ="/Users/alexli/Documents/Academics 2014 Winter/CV Proj/Images";
     std::stringstream filename;
     int gender;
-    int eig;
-    time_t timestamp;
+    int sizeofeig=3;
+    float eigenface[sizeofeig];
+    float eig[sizeofeig];
     for (int i = start+1; i<=start+n; i++) {
         filename<< folder_name << "/img" << i << ".jpg";
         //gender = detect(model, filename.str());
-        gender = 1; // gender
-        eig = 0; // eigen face
-        timestamp = time(0); // current time;
-        send_record(gender,eig);
+        gender = 0; // replace with above
+        //eigenface = eigenface(filename.str());
+        for (int j=0; j<sizeofeig; j++) {
+            eig[j]=eigenface[j];}
+        send_record(gender,eig, sizeofeig);
     }
     
     // query database on the eigenface of the images
     // save the face visit in the database
 }
 
-void send_record(int gender,int eig) {
+void send_record(float gender,float eig[], int sizeofeig) {
     CURL* curl;
     CURLcode res;
-    static char* postthis = "test";
+    ostringstream postmsg;
+    postmsg <<"gender=" << gender;
+    for (int i=0; i<sizeofeig; i++) {
+        postmsg << "&eig";
+        postmsg << i << "=";
+        postmsg << eig[i];
+    }
+    std::string poststring = postmsg.str();
+    const char* postthis = poststring.c_str();
+    cout << postthis;
     curl = curl_easy_init();
     if(curl) {
         curl_easy_setopt(curl, CURLOPT_URL, "http://www.thebabythinker.com/crm.php");
