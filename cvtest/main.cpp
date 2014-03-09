@@ -23,10 +23,9 @@
 #include <time.h>
 #include <ctype.h>
 
-
 #include <Recognition.h>
 #include <Capture.h>
-#include <genderDetection.h>
+//#include <genderDetection.h>
 
 using namespace std;
 
@@ -37,7 +36,8 @@ const char* cascade_name =
 // Main function, defines the entry point for the program.
 int main( int argc, char** argv )
 {
-    //Ptr<FaceRecognizer>  model = gender_detection("/Users/xueqianjiang/Desktop/cvproject/male.txt"); // CHANGE THIS
+    Ptr<FaceRecognizer>  model;
+    //gender_detection("/Users/xueqianjiang/Desktop/cvproject/male.txt"); // CHANGE THIS
     
     // memeory allocation
     static CvMemStorage* storage = 0;
@@ -116,7 +116,8 @@ int main( int argc, char** argv )
                 // get the rect from the sequence
                 r = (CvRect*)cvGetSeqElem(faces, i);
                 if (faces_last->total == 0) {
-                    cout<<"a face appeared: "<<"there are total faces of "<<faces_last->total<<"\n";
+                    cout<<"a face appeared: "<<"there are total faces of "<<faces->total<<"\n";
+                    send_record(1, 0);
                     save_face(r, imgCamera, imgFace, scale, filecounter);
                     filecounter++;
                     //report_faces(filecounter, faces_new->total, model); // report new faces stored starting from filecounter
@@ -127,11 +128,23 @@ int main( int argc, char** argv )
                         if (!same_face(r, r_last, imgCamera, imgCamera_last, i, k)) {
                             save_face(r, imgCamera, imgFace, scale, filecounter);
                             filecounter++;
-                            //report_faces(filecounter, faces_new->total, model); // report new faces stored starting from filecounter
+                            //report_faces(filecounter, faces->total, model); // report new faces stored starting from filecounter
                         }
                     }
                 }
             }
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             
             //cvClearMemStorage(storage2);
             while (faces_last->total >0) {

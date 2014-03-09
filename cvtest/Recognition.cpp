@@ -7,6 +7,7 @@
 //
 
 #include "Recognition.h"
+#include "curl/curl.h"
 
 
 void find_faces( IplImage* img, CvMemStorage* storage, CvHaarClassifierCascade* cascade, CvSeq* faces, float scale){
@@ -56,13 +57,40 @@ bool same_face(CvRect* r, CvRect* r_last, IplImage* imgCamera, IplImage* imgCame
 void report_faces(int start, int n, Ptr<FaceRecognizer> model) {
     const char* folder_name ="/Users/alexli/Documents/Academics 2014 Winter/CV Proj/Images";
     std::stringstream filename;
-    int result;
+    int gender;
+    int eig;
+    time_t timestamp;
     for (int i = start+1; i<=start+n; i++) {
         filename<< folder_name << "/img" << i << ".jpg";
-        result = detect(model, filename.str());
+        //gender = detect(model, filename.str());
+        gender = 1; // gender
+        eig = 0; // eigen face
+        timestamp = time(0); // current time;
+        send_record(gender,eig);
     }
     
     // query database on the eigenface of the images
     // save the face visit in the database
+}
+
+void send_record(int gender,int eig) {
+    CURL* curl;
+    CURLcode res;
+    static char* postthis = "test";
+    curl = curl_easy_init();
+    if(curl) {
+        curl_easy_setopt(curl, CURLOPT_URL, "http://www.thebabythinker.com/crm.php");
+        curl_easy_setopt(curl, CURLOPT_POSTFIELDS, postthis);
+        
+        /* if we don't provide POSTFIELDSIZE, libcurl will strlen() by
+         itself */
+        curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, (long)strlen(postthis));
+        
+        res = curl_easy_perform(curl);
+        cout << "made connection";
+        
+        /* always cleanup */
+        curl_easy_cleanup(curl);
+    }
 }
 

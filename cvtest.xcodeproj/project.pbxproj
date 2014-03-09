@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		5A4A05B518B02A92004B7D8A /* Recognition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5A4A05B318B02A92004B7D8A /* Recognition.cpp */; };
+		5A74FD6818CC09BF00EA16D5 /* libcurl.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A74FD6518CC09BF00EA16D5 /* libcurl.3.dylib */; };
+		5A74FD6918CC09BF00EA16D5 /* libcurl.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A74FD6618CC09BF00EA16D5 /* libcurl.4.dylib */; };
+		5A74FD6A18CC09BF00EA16D5 /* libcurl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A74FD6718CC09BF00EA16D5 /* libcurl.dylib */; };
 		5AC8DC121897A65500C31374 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5AC8DC111897A65500C31374 /* main.cpp */; };
 		5AC8DC141897A65500C31374 /* cvtest.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5AC8DC131897A65500C31374 /* cvtest.1 */; };
 		5AC8DC1B1897A71600C31374 /* libopencv_core.2.4.8.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AC8DC1A1897A71600C31374 /* libopencv_core.2.4.8.dylib */; };
@@ -46,6 +49,9 @@
 /* Begin PBXFileReference section */
 		5A4A05B318B02A92004B7D8A /* Recognition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Recognition.cpp; sourceTree = "<group>"; };
 		5A4A05B418B02A92004B7D8A /* Recognition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Recognition.h; sourceTree = "<group>"; };
+		5A74FD6518CC09BF00EA16D5 /* libcurl.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcurl.3.dylib; path = usr/lib/libcurl.3.dylib; sourceTree = SDKROOT; };
+		5A74FD6618CC09BF00EA16D5 /* libcurl.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcurl.4.dylib; path = usr/lib/libcurl.4.dylib; sourceTree = SDKROOT; };
+		5A74FD6718CC09BF00EA16D5 /* libcurl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcurl.dylib; path = usr/lib/libcurl.dylib; sourceTree = SDKROOT; };
 		5AC8DC0E1897A65500C31374 /* cvtest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cvtest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AC8DC111897A65500C31374 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		5AC8DC131897A65500C31374 /* cvtest.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = cvtest.1; sourceTree = "<group>"; };
@@ -79,6 +85,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A74FD6818CC09BF00EA16D5 /* libcurl.3.dylib in Frameworks */,
+				5A74FD6918CC09BF00EA16D5 /* libcurl.4.dylib in Frameworks */,
+				5A74FD6A18CC09BF00EA16D5 /* libcurl.dylib in Frameworks */,
 				5AC8DC2D1897A7FA00C31374 /* libopencv_contrib.2.4.8.dylib in Frameworks */,
 				5AC8DC2E1897A7FA00C31374 /* libopencv_features2d.2.4.8.dylib in Frameworks */,
 				5AC8DC2F1897A7FA00C31374 /* libopencv_flann.2.4.8.dylib in Frameworks */,
@@ -104,6 +113,9 @@
 		5AC8DC051897A65500C31374 = {
 			isa = PBXGroup;
 			children = (
+				5A74FD6518CC09BF00EA16D5 /* libcurl.3.dylib */,
+				5A74FD6618CC09BF00EA16D5 /* libcurl.4.dylib */,
+				5A74FD6718CC09BF00EA16D5 /* libcurl.dylib */,
 				5AC8DC1C1897A7FA00C31374 /* libopencv_calib3d.2.4.8.dylib */,
 				5AC8DC1D1897A7FA00C31374 /* libopencv_contrib.2.4.8.dylib */,
 				5AC8DC1E1897A7FA00C31374 /* libopencv_features2d.2.4.8.dylib */,
@@ -287,6 +299,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/opt/local/lib,
+					"/Users/alexli/Downloads/mysql-connector-c++-1.0.5-osx10.5-x86-64bit/lib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"USER_HEADER_SEARCH_PATHS[arch=*]" = /opt/local/include;
@@ -300,6 +313,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/opt/local/lib,
+					"/Users/alexli/Downloads/mysql-connector-c++-1.0.5-osx10.5-x86-64bit/lib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"USER_HEADER_SEARCH_PATHS[arch=*]" = /opt/local/include;
